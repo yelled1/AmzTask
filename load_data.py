@@ -13,7 +13,7 @@ more valueable, the prior reading of metric(s) that indicate future failure is
 important; however, # days_prior to failure may matter (as data can be stale).
 Preventive replacement of device is often a lot cheaper than unexpected failure
 in industrial settings.
-1. The data is sparse some machines have a lot of observations (over 200+)
+1. The data is sparse in that some machines have a lot of observations (over 200+)
    while a lot of machines only 1 readings. One must assume that only time an
    observation is recorded is when sensor(s) fire due to something unusual.
 2. Opm_df.shape: (124494, 12) <- one may think this is imbalanced class problem
@@ -36,7 +36,8 @@ in industrial settings.
 5. No device failed more than 1 time.
 6. Probably need to look at pre/post failure rows for device separately.
 7. Do we include actual failure or only before?
- """
+"""
+
 def days_delta_calc(df):
   """ given data_frame returns days from the failure date  """
   return df.date.progress_apply(lambda x: (x - df.loc[df[df.failure].index[0]].date).days)
@@ -45,7 +46,7 @@ def load_parse_save(in_file_name='./predictive_maintenance.csv', save_file='',
                    debug=False):
   """
   read in input csv file & returns pased dateframe & saves
-  a save_file, if specificed
+  a save_file, if save_file name is specificed
   """
   if debug:
     print(time.ctime())

@@ -27,6 +27,7 @@ jupyterlab = "*"
 forestci = "*"
 duecredit = "*"
 xgboost = "*"
+imblearn = "*"
 
 [dev-packages]
 pylint = "*"

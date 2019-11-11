@@ -2,11 +2,26 @@
 Helper function for analysis
 """
 from collections import Counter
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
 from imblearn.datasets import make_imbalance
 #from sklearn.preprocessing import LabelBinarizer
-#from sklearn.metrics import roc_auc_score, mean_squared_error, mean_absolute_error
+
+"""
+Function to apply to grouped data to summarize as input X
+"""
+fstat = lambda x: pd.Series({
+  'Fails' : True if x['failure'].sum() > 0 else False, 'count' : x['date'].count(),
+  'm1_max': x['metric1'].max(), 'm1_mean': x['metric1'].mean(), 'm1_min': x['metric1'].min(),
+  'm2_max': x['metric2'].max(), 'm2_mean': x['metric2'].mean(), 'm2_min': x['metric2'].min(),
+  'm3_max': x['metric3'].max(), 'm3_mean': x['metric3'].mean(), 'm3_min': x['metric3'].min(),
+  'm4_max': x['metric4'].max(), 'm4_mean': x['metric4'].mean(), 'm4_min': x['metric4'].min(),
+  'm5_max': x['metric5'].max(), 'm5_mean': x['metric5'].mean(), 'm5_min': x['metric5'].min(),
+  'm6_max': x['metric6'].max(), 'm6_mean': x['metric6'].mean(), 'm6_min': x['metric6'].min(),
+  'm7_max': x['metric7'].max(), 'm7_mean': x['metric7'].mean(), 'm7_min': x['metric7'].min(),
+  'm8_max': x['metric8'].max(), 'm8_mean': x['metric8'].mean(), 'm8_min': x['metric8'].min(),
+  'm9_max': x['metric9'].max(), 'm9_mean': x['metric9'].mean(), 'm9_min': x['metric9'].min(),})
 
 def resample_split_data(df, resample_ratio=1.0, test_size=0.3, debug=False):
   """
@@ -15,12 +30,19 @@ def resample_split_data(df, resample_ratio=1.0, test_size=0.3, debug=False):
   And not part of this excercis
   """
   y = df['Fails']
-  X = df[['count', 'm1_max', 'm1_mean', 'm1_min', 'm2_max', 'm2_mean', 'm2_min',
-          'm3_max', 'm3_mean', 'm3_min', 'm4_max', 'm4_mean', 'm4_min',
-          'm5_max', 'm5_mean', 'm5_min', 'm6_max', 'm6_mean', 'm6_min',
-          'm7_max', 'm7_mean', 'm7_min', 'm8_max', 'm8_mean', 'm8_min',
-          'm9_max', 'm9_mean', 'm9_min']]
-  # get the min of either (max available dominant classification or multiple of minor classification
+  X = df[['count', 'm1_max', 'm1_mean', 'm1_min',
+          'm2_max', 'm2_mean', 'm2_min',
+          'm3_max', 'm3_mean', 'm3_min',
+          'm4_max', 'm4_mean', 'm4_min',
+          'm5_max', 'm5_mean', 'm5_min',
+          'm6_max', 'm6_mean', 'm6_min',
+          'm7_max', 'm7_mean', 'm7_min',
+          'm8_max', 'm8_mean', 'm8_min',
+          'm9_max', 'm9_mean', 'm9_min',]].fillna(0)
+  # Could have used an auto generate or slice of df.columns,
+  # but this is clearer
+
+  # get the min of ("max dominant rows" or "multiple of minor classification")
   dominant_resample_count = min(int(y.sum() * resample_ratio), y.shape[0] - y.sum())
   X_res, y_res = make_imbalance(X, y,
                                 sampling_strategy={

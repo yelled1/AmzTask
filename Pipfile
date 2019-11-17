@@ -28,6 +28,7 @@ xgboost = "*"
 imblearn = "*"
 jupyterlab = "*"
 jupyter-contrib-nbextensions = "*"
+missingno = "*"
 
 [dev-packages]
 pylint = "*"

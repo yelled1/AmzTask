@@ -10,6 +10,8 @@ The Objectives are according to instructions:
 - Run ```jupyter lab``` or ```jupyter notebook```
 - Open AmzAnalytics.ipynb inside browser & Run All Cells
 - Run Dash by executing on terminal ```$ pipenv run python ./metrics_comparison.py``` for metrics comparison
+- Open Browser to http://127.0.0.1:8050/
+![Alt text](./img/Dash.png?raw=true "Title")
 
 - N.B. cell 20 sometimes do NOT run 1st time. This may be due to a bub in the lib.
 

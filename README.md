@@ -8,24 +8,31 @@ The Objectives are according to instructions:
 - Use pyenv
 - Run ```$ pipenv install``` to create pipenv to run
 - Run ```jupyter lab``` or ```jupyter notebook```
-- Open Analytics.ipynb & Run All Cells
-- ```pipenv run python ./metrics_comparison.py``` to Run metrics comparison via Dash
+- Open AmzAnalytics.ipynb inside browser & Run All Cells
+- Run Dash by executing on terminal ```$ pipenv run python ./metrics_comparison.py``` for metrics comparison
+
+- N.B. cell 20 sometimes do NOT run 1st time. This may be due to a bub in the lib.
 
 ## Inside notebook
-- A RandomForest & (Ada/XG) Boost models with print out of the results at each section
+- RandomForest, (Ada/XG) Boosted models, Logit, & PCA+Logit w/ pipeline used with print out of the results at each section
 - The models were minimally tweaked using imbalance module to reduce the dominant classification data size to 100~50% of the minor classification as to make the f1_score (rather than to improve accuracy), as "An Ounce of Prevention is Worth a Pound of Cure (or Failure time)"
 - This is usually because modern manufacturing or systems require extremely high availability
+
+- Added Recursive Feature Elimination (RFE) to the LogisticRegression & Boosted models
+- Added (ROC) Receiver operating characteristic visualization
+- Added Visualization using PCA. So, one can see how sampling of imbalances effect the models
+- Added msno missing plot
+- Added logit summary cell to look at P-value
+
+
 - The notebook contains quite a bit of documentation but likely need more
-- One of the critical Q to answer is when should one perform the prevention. This should be done after model is tuned.
-- Hyperparameter tunning or factor selection had not been done due to time constraints. Currently too many variables are dumped into the model & regularization or other fine tuning had not been performed. This takes considerable time & effort & just had not had the time.
-- metrics_comparison.py is instead of the usual QQ plot, as I am trying to become familiar with Dash
+- Used metrics_comparison.py is instead of the usual QQ plot, as I am trying to become familiar with Dash
 - Press Top & Bottom Radio Buttons to change the graphs below. Interactivity helps.
-- I should add click event to something but...
 
 ### Below are Some thoughts which were written down prior to starting for my own notes
 - 1st Project: I do NOT know Urdu. So, I have no verification of correct translation rather than via Google or Bixby Translation. And other language resources were extremely difficult to find on my last try few years ago. Although it would be fun to try LSTM via Tensorflow, attempting the double unknown would be too extreme.
-- 2nd Project: This would likely be some combination of MNIST dataset &/or sign/road identification typically done in either SVN or CNN networks. I have done this before with Keras/Tensorflow combination successfully. So, it would be easiest of 3 but least challenging.
-- 3rd Project: This is imbalanced classification problem & my next project will have a portion in this subject matter. So, this was chosen, as I wanted / could use the practice.
+- 2nd Project: This would likely be some combination of MNIST dataset &/or sign/road identification typically done in either SVN or CNN networks. I have done this before with Keras/Tensorflow combination successfully for other projects. So, it would be easiest of 3 but least challenging.
+- **3rd Project**: This is imbalanced classification problem & my next project will have a portion in this subject matter. So, this was chosen, as I wanted / could use the practice.
 
 The observations likely time related issues where machine(s) w/ some
 beyond the range &/or combinations of metric(s) result in future failures 

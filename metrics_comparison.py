@@ -13,23 +13,21 @@ from dash.dependencies import Input, Output
 from tqdm import tqdm
 from load_data import load_parse_save
 
-def u_pickle_origin_csv(pkl_file = './parsed_dataframe.pkl'):
+def u_pickle_origin_csv(pkl_file='./parsed_dataframe.pkl'):
   """
   Grabs either pickled csv or processes a new one & picke/return it
   """
   # Load Data from csv file & process via load_parse_save
   if os.path.isfile(pkl_file):
-      # Alternative is Load from Pickled set: Saves Time
-      with open(pkl_file, 'rb') as fp:
-        ret_dict = pickle.load(fp)
+    # Alternative is Load from Pickled set: Saves Time
+    with open(pkl_file, 'rb') as fp:
+      ret_dict = pickle.load(fp)
   else:
-      print("Pkl FileNotFound - so the text will be processed. This may take time")
-      tqdm.pandas(desc='load & parse csv')
-      ret_dict = load_parse_save(save_file='./parsed_dataframe.pkl', debug=True)
+    print("Pkl FileNotFound - so the text will be processed. This may take time")
+    tqdm.pandas(desc='load & parse csv')
+    ret_dict = load_parse_save(save_file='./parsed_dataframe.pkl', debug=True)
 
-  prev_df = ret_dict['csv_df']      #: csv parse & load 
-  grp = ret_dict['grp_dev_fail']    #: grouped by device & [Failed or Normal set]
-  g_stat_df = ret_dict['g_stat_df'] #: processing based on the grp above -> max, min, mean & 
+  prev_df = ret_dict['csv_df']      #: csv parse & load
   # days prior to max & min
   return prev_df
 

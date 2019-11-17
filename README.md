@@ -8,7 +8,8 @@ The Objectives are according to instructions:
 - Use pyenv
 - Run ```$ pipenv install``` to create pipenv to run
 - Run ```jupyter lab``` or ```jupyter notebook```
-- Open Analytics.ipynb
+- Open Analytics.ipynb & Run All Cells
+- ```pipenv run python ./metrics_comparison.py``` to Run metrics comparison via Dash
 
 ## Inside notebook
 - A RandomForest & (Ada/XG) Boost models with print out of the results at each section
@@ -17,7 +18,9 @@ The Objectives are according to instructions:
 - The notebook contains quite a bit of documentation but likely need more
 - One of the critical Q to answer is when should one perform the prevention. This should be done after model is tuned.
 - Hyperparameter tunning or factor selection had not been done due to time constraints. Currently too many variables are dumped into the model & regularization or other fine tuning had not been performed. This takes considerable time & effort & just had not had the time.
-- *** Upto now the visualization is not included in the project Hope to add later***
+- metrics_comparison.py is instead of the usual QQ plot, as I am trying to become familiar with Dash
+- Press Top & Bottom Radio Buttons to change the graphs below. Interactivity helps.
+- I should add click event to something but...
 
 ### Below are Some thoughts which were written down prior to starting for my own notes
 - 1st Project: I do NOT know Urdu. So, I have no verification of correct translation rather than via Google or Bixby Translation. And other language resources were extremely difficult to find on my last try few years ago. Although it would be fun to try LSTM via Tensorflow, attempting the double unknown would be too extreme.
